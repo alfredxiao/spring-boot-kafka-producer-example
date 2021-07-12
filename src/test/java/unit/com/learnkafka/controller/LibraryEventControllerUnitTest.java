@@ -51,8 +51,7 @@ public class LibraryEventControllerUnitTest {
         mockMvc.perform(post("/v1/libraryevent")
         .content(json)
         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().isCreated())
-                .andExpect(content().string("book.bookAuthor - must not be blank, book.bookId - must not be null"));
+                .andExpect(status().isCreated());
 
         // then
     }
@@ -79,7 +78,8 @@ public class LibraryEventControllerUnitTest {
         mockMvc.perform(post("/v1/libraryevent")
         .content(json)
         .contentType(MediaType.APPLICATION_JSON))
-                .andExpect(status().is4xxClientError());
+                .andExpect(status().is4xxClientError())
+                .andExpect(content().string("book.bookAuthor - must not be blank, book.bookId - must not be null"));
 
         // then
     }
